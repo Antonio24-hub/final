@@ -21,6 +21,7 @@
                 <form action="../traitement/traitement_inscription.php" method="post">
                     <p>Nom : <input type="text" name="nom"></p>
                     <p>Date de naissance : <input type="date" name="date_naissance"></p>
+                    <p>Ville : <input type="text" name="ville"></p>
                     <?php if(isset($_GET['error'])) { ?>
                         <p class="error">Votre email a déjà été utilisé</p>
                     <?php } ?>

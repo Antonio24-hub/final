@@ -1,9 +1,10 @@
 <?php
-function add_new_member($email, $mdp, $nom, $ddns){
-        $sql = "INSERT INTO membre (nom, date_naissance, mdp, ville) VALUES ('%s', '%s', '%s', '%s')";
-        $sql = sprintf($sql, $email, $mdp, $nom, $ddns);
-        mysqli_query(dbconnect(), $sql);
-    }
+require_once '../inc/connexion.php';
+function add_new_member($nom, $ddns, $mdp, $email, $ville){
+    $sql = "INSERT INTO membre (nom, date_naissance, email, ville, mdp) VALUES ('%s', '%s', '%s', '%s', '%s')";
+    $sql = sprintf($sql, $nom, $ddns, $email, $ville, $mdp);
+    mysqli_query(dbconnect(), $sql);
+}
 
     function listerObjetsAvecEmprunt($connect) {
         $sql = "
@@ -37,5 +38,14 @@ function add_new_member($email, $mdp, $nom, $ddns){
         else{
             return false;
         }
+    }
+
+    
+    function to_log($email, $mdp){
+        $sql = "SELECT * FROM membre WHERE email = '%s' AND mdp = '%s'";
+        $sql = sprintf($sql, $email, $mdp);
+        $result = mysqli_query(dbconnect(), $sql);
+
+        return mysqli_num_rows($result);
     }
  ?>   

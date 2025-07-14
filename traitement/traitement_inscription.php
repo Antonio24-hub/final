@@ -8,6 +8,7 @@ ini_set('display_errors', 1);
     $nom = $_POST['nom'];
     $nom = mysqli_real_escape_string(dbconnect(), $nom);
     $ddns = $_POST['date_naissance']?? NULL;
+    $ville= $_POST['ville'];
     $email = $_POST['email'];
     $email = mysqli_real_escape_string(dbconnect(), $email);
     
@@ -24,6 +25,6 @@ ini_set('display_errors', 1);
         exit;
     }
     $_SESSION['mdp'] = $mdp;
-    add_new_member($email, $mdp, $nom, $ddns);
+    add_new_member($nom, $ddns, $mdp, $email, $ville);
     header('Location: ../pages/home.php');
 ?>
