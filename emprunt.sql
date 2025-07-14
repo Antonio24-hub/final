@@ -95,3 +95,5 @@ INSERT INTO emprunt (id_objet, id_membre, date_emprunt, date_retour) VALUES
 INSERT INTO images_objet (id_objet, nom_image) VALUES
 (1, 'seche.jpg'), (5, 'robot.jpg'), (12, 'scie.jpg'),
 (22, 'pompe.jpg'), (35, 'mascara.jpg');
+
+UPDATE images_objet SET nom_image = CONCAT(id_objet, '.jpg');
