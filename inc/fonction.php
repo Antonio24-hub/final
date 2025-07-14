@@ -1,5 +1,21 @@
 <?php
 require_once '../inc/connexion.php';
+
+function getIdLoged($email){
+    $donnee = get_loged_membre($email);
+    $idMembre = $donnee['IdMembre'];
+    return $idMembre;
+}
+function get_loged_membre($email){
+    $sql = "SELECT * FROM membre WHERE email = '%s'";
+    $sql = sprintf($sql, $email);
+    $result = mysqli_query(dbconnect(), $sql);
+    if ($result) {
+        return mysqli_fetch_assoc($result);
+    } else {
+        return null;
+    }
+}
 function add_new_member($nom, $ddns, $mdp, $email, $ville){
     $sql = "INSERT INTO membre (nom, date_naissance, email, ville, mdp) VALUES ('%s', '%s', '%s', '%s', '%s')";
     $sql = sprintf($sql, $nom, $ddns, $email, $ville, $mdp);
