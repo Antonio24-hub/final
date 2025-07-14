@@ -23,6 +23,8 @@ if (!$resultat) {
         <h1 class="mb-4 text-center text-primary">Objets disponibles ou empruntés</h1>
         <a href="ajout_objet.php" class="btn btn-success">+ Ajouter un objet</a>
         <a href="emprunt_objet.php" class="btn btn-success">+ Emprunter un objet</a>
+        <a href="membre.php" class="btn btn-success">membre</a>
+
     </header>
     
     <section class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
