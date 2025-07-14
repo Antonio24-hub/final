@@ -25,13 +25,13 @@ function add_new_member($nom, $ddns, $mdp, $email, $ville){
     function listerObjetsAvecEmprunt($connect) {
         $sql = "
             SELECT o.id_objet, o.nom_objet, c.nom_categorie, m.nom AS proprietaire,
-           e.date_emprunt, e.date_retour, i.nom_image
-    FROM objet o
-    JOIN membre m ON o.id_membre = m.id_membre
-    JOIN categorie_objet c ON o.id_categorie = c.id_categorie
-    LEFT JOIN emprunt e ON o.id_objet = e.id_objet
-    LEFT JOIN images_objet i ON o.id_objet = i.id_objet
-    GROUP BY o.id_objet
+               e.date_emprunt, e.date_retour,
+               (SELECT nom_image FROM images_objet WHERE id_objet = o.id_objet ORDER BY id_image ASC LIMIT 1) AS nom_image
+        FROM objet o
+        JOIN membre m ON o.id_membre = m.id_membre
+        JOIN categorie_objet c ON o.id_categorie = c.id_categorie
+        LEFT JOIN emprunt e ON o.id_objet = e.id_objet
+        ORDER BY o.id_objet
         ";
     
         $resultat = mysqli_query($connect, $sql);
