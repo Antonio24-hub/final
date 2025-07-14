@@ -1,3 +1,5 @@
+create database emprunt;
+USE emprunt;
 CREATE TABLE membre (
     id_membre INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
