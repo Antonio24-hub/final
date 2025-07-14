@@ -37,8 +37,9 @@ function add_new_member($nom, $ddns, $mdp, $email, $ville){
     
         if (!$resultat) {
             echo "Erreur dans la requête : " . mysqli_error($connect);
-            return;
+            return null;
         }
+        return $resultat;
     }
     function verify_inscription($email){
         $sql = "SELECT * FROM membre WHERE email = '%s'";
