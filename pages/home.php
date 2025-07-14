@@ -45,14 +45,15 @@ if (!$resultat) {
                         <h6 class="card-subtitle mb-2 text-muted"><?php echo htmlspecialchars($row["nom_categorie"]); ?></h6>
                         <p class="card-text">
                             <strong>Propriétaire :</strong> <?php echo htmlspecialchars($row["proprietaire"]); ?><br>
-                            <strong>État :</strong> 
                             <?php
-                                $statut = ($row["date_emprunt"] && (!$row["date_retour"] || $row["date_retour"] >= date('Y-m-d'))) ? "Emprunté" : "Disponible";
-                                echo $statut;
+                                $aujourdhui = date('Y-m-d');
+                                if ($row["date_emprunt"] && $row["date_retour"] && $row["date_retour"] >= $aujourdhui) {
+                                    echo "<strong class='text-danger'>État :</strong> Emprunté<br>";
+                                    echo "<strong class='text-warning'>Disponible le :</strong> " . htmlspecialchars($row["date_retour"]);
+                                } else {
+                                    echo "<strong class='text-success'>État :</strong> Disponible";
+                                }
                             ?>
-                            <?php if ($row["date_retour"]) : ?>
-                                <br><strong>Retour prévu :</strong> <?php echo $row["date_retour"]; ?>
-                            <?php endif; ?>
                         </p>
                         <a href="#" class="btn btn-outline-primary">Voir détails</a>
                     </section>

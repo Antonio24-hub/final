@@ -1,5 +1,5 @@
 <body>
-    <form action="traitement/traitement_emprunt_objet.php" method="post">
+       <form action="../traitement/traitement_emprunt_objet.php" method="post">
         <div class="mb-3">
             <label for="objet_id" class="form-label">ID de l'objet :</label>
             <input type="text" class="form-control" name="objet_id" id="objet_id" required>
